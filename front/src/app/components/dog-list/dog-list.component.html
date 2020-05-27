@@ -1,4 +1,32 @@
 <h5>dog-list works!</h5>
-<div *ngFor="let dog of dogs; let i = index">
-    <a  style="color:black"><span class="badge badge-dark">{{i + 1}}</span> -> {{dog.name}}</a>
-</div>
+<div class="col s7" style="border: solid #f18101 1px;">
+    <div class="row box-puppy-list">
+        <div class="card-panel deep-orange accent-1">
+            <h4 class="center-align">PUPPIES LIST</h4>
+        </div>
+    
+        <div *ngIf="dogs.length; else emptyTemplate" class="puppy-card">
+            <div *ngFor="let dog of dogs; let i = index" class="col s12 m4">
+                <div class="card">
+                    <div class="card-image ">
+                        <img src="{{ dog.imageUrl }}">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title">{{ dog.name | titlecase }}</span>
+                        <p>Age: {{ dog.age }}</p>
+                    </div>
+                    <!-- <button class="btn waves-effect waves-light" type="submit" (click)="onAdopt(puppie, i)">Adopt this puppy</button>
+                    <button class="btn waves-effect waves-light" type="submit" (click)="onDelete(puppie)">Delete this puppy</button> -->
+                </div>
+            </div>
+        </div>
+    
+        <ng-template #emptyTemplate>
+            <div class="materialert error">
+                <div class="material-icons">error_outline</div>
+                No Puppy Found!
+            </div>
+        </ng-template>
+    </div>
+    </div>
+    <!-- <app-user-puppy></app-user-puppy> -->

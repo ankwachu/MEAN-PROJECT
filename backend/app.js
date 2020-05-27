@@ -24,7 +24,7 @@ const corsOptions = {
   origin: 'http://localhost:4200',
   optionsSuccessStatus: 200
 }
- 
+
 app.use(cors(corsOptions))
 
 const dogRoutes = require('./routes/dog.route');
