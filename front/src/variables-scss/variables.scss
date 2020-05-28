@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Sriracha&display=swap&subset=latin-ext,thai,vietnamese');
+
+$font: 'Lato', sans-serif;
+$heading-font: 'Sriracha', cursive;
+$bg-color: bisque;
+$active: #b71c1c;
+// $font-weight: 500;
+
+// .panel {
+//     border: 1px solid black;
+//     background-color: green;
+//     margin: 10px
+// }
+
+// .big-panel {
+//     @extend .panel;
+//     font-size: 32px;
+//     padding: 10px;
+// }
+
+@function headings($from:1, $to:6) {
+    @if $from == $to {
+        @return 'h#{$from}';
+    } @else {
+        @return 'h#{$from},' + headings($from+1, $to);
+    }
+}
