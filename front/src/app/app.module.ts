@@ -6,17 +6,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DogListComponent } from './components/dog-list/dog-list.component';
 import { HeaderComponent } from './components/header/header.component';
+import { CreateDogComponent } from './components/create-dog/create-dog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     DogListComponent,
-    HeaderComponent
+    HeaderComponent,
+    CreateDogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

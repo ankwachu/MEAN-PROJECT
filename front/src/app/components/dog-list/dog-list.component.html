@@ -4,7 +4,7 @@
             <h4 class="center-align">PUPPIES LIST</h4>
         </div>
     
-        <div *ngIf="dogs.length; else emptyTemplate" class="puppy-card">
+        <div *ngIf="dogs?.length > 0; else emptyTemplate" class="puppy-card">
             <div *ngFor="let dog of dogs; let i = index" class="col s12 m4">
                 <div class="card">
                     <div class="card-image ">

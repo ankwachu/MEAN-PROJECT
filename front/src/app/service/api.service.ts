@@ -16,4 +16,8 @@ getDogs(): Observable<Dog[]> {
   return this.http.get<Dog[]>(this.url)
 }
 
+addDog(dog: Dog): Observable<Dog> {
+  return this.http.post<Dog>(this.url, dog)
+}
+
 }
