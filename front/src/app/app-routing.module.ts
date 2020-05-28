@@ -4,7 +4,9 @@ import { DogListComponent } from './components/dog-list/dog-list.component';
 
 
 const routes: Routes = [
-  { path: '', component: DogListComponent}
+  { path: 'home', component: DogListComponent},
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({

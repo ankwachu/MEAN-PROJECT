@@ -5,11 +5,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DogListComponent } from './components/dog-list/dog-list.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DogListComponent
+    DogListComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

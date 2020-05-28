@@ -1,0 +1,23 @@
+version: '3' # specify docker-compose version
+
+# Define the services/containers to be run
+services:
+  front: # name of the first service
+    build: front # specify the directory of the Dockerfile
+    ports:
+      - "4200:4200" # specify port forewarding
+
+  backend: #name of the second service
+    container_name: backend
+    build: backend # specify the directory of the Dockerfile
+    ports:
+      - "3000:3000" #specify ports forewarding
+    links:
+      - mongo
+    depends_on:
+      - mongo
+
+  mongo: # name of the third service
+    image: mongo # specify image to build container from
+    ports:
+      - "27018:27017" # specify port forewarding
