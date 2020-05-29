@@ -3,7 +3,7 @@ import { ApiService } from 'src/app/service/api.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as M from 'materialize-css';
-
+declare var $: any 
 @Component({
   selector: 'app-create-dog',
   templateUrl: './create-dog.component.html',
@@ -31,9 +31,8 @@ export class CreateDogComponent implements OnInit {
         console.log('orderForm value changes : ', value);
       });
 
-      document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('select');
-        var instances = M.FormSelect.init(elems, Option);
+      $(document).ready(function(){
+        $('select').formSelect();
       });
 
   }

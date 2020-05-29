@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,9 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    $(document).ready(function(){
+      $('.sidenav').sidenav();
+    });
   }
 
 }

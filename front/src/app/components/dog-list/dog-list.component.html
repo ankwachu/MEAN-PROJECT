@@ -4,7 +4,7 @@
             <h4 class="center-align">PUPPIES LIST</h4>
         </div>
     
-        <div *ngIf="dogs?.length > 0; else emptyTemplate" class="puppy-card">
+        <div *ngIf="dogs?.length; else emptyTemplate" class="puppy-card">
             <div *ngFor="let dog of dogs; let i = index" class="col s12 m4">
                 <div class="card">
                     <div class="card-image ">
@@ -14,8 +14,8 @@
                         <span class="card-title">{{ dog.name | titlecase }}</span>
                         <p>Age: {{ dog.age }}</p>
                     </div>
-                    <!-- <button class="btn waves-effect waves-light" type="submit" (click)="onAdopt(puppie, i)">Adopt this puppy</button>
-                    <button class="btn waves-effect waves-light" type="submit" (click)="onDelete(puppie)">Delete this puppy</button> -->
+                    <!-- <button class="btn waves-effect waves-light" type="submit" (click)="onAdopt(puppie, i)">Adopt this puppy</button> -->
+                    <button class="btn waves-effect waves-light" type="submit" (click)="onDelete(dog)">Delete</button>
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
         <ng-template #emptyTemplate>
             <div class="materialert error">
                 <div class="material-icons">error_outline</div>
-                No Puppy Found!
+                No Puppy Found! Create a puppy first !
             </div>
         </ng-template>
     </div>

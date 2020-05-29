@@ -8,7 +8,7 @@ import { Dog } from '../models/dog.model';
 })
 export class ApiService {
 
-  private url = 'http://localhost:3000/api/dogs';
+  private url = 'http://localhost:3000/api/dogs/';
 
   constructor(private http: HttpClient) { }
 
@@ -20,4 +20,9 @@ addDog(dog: Dog): Observable<Dog> {
   return this.http.post<Dog>(this.url, dog)
 }
 
+deleteDog(id: string) {
+  return this.http.delete<Dog>(this.url + id);
 }
+
+}
+
