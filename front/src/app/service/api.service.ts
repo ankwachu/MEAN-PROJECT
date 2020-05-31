@@ -32,6 +32,11 @@ export class ApiService {
     return this.http.get<Dog>(this.url + id);
   }
 
+  update (dog: Dog): Observable<any> {
+    const id = dog._id
+    return this.http.put<Dog>(this.url+id, dog, httpOptions);
+  }
+
   adopt(dog: Dog) {
     this.items.push(dog);
     this.items.reverse();

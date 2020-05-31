@@ -14,7 +14,7 @@ export class CreateDogComponent implements OnInit {
   myForm: FormGroup
   // pictures = [];
 
-  constructor(private fb: FormBuilder, private dataService: ApiService, private router: Router, ) {}
+  constructor(private fb: FormBuilder, private dataService: ApiService, private router: Router ) {}
 
   ngOnInit() {
     this.myForm = this.fb.group({
