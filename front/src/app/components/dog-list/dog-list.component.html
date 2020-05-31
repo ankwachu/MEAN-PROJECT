@@ -14,7 +14,7 @@
                         <span class="card-title">{{ dog.name | titlecase }}</span>
                         <p>Age: {{ dog.age }}</p>
                     </div>
-                    <!-- <button class="btn waves-effect waves-light" type="submit" (click)="onAdopt(puppie, i)">Adopt this puppy</button> -->
+                    <button class="btn waves-effect waves-light" type="submit" (click)="onAdopt(dog, i)">Adopt this puppy</button>
                     <button class="btn waves-effect waves-light" type="submit" (click)="onDelete(dog)">Delete</button>
                 </div>
             </div>
@@ -28,4 +28,4 @@
         </ng-template>
     </div>
     </div>
-    <!-- <app-user-puppy></app-user-puppy> -->
+   <app-user-list></app-user-list>
