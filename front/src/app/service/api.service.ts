@@ -28,6 +28,10 @@ export class ApiService {
     return this.http.delete<Dog>(this.url + id);
   }
 
+  getOne(id: string): Observable<Dog> {
+    return this.http.get<Dog>(this.url + id);
+  }
+
   adopt(dog: Dog) {
     this.items.push(dog);
     this.items.reverse();

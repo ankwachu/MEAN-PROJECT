@@ -16,6 +16,7 @@
                     </div>
                     <button class="btn waves-effect waves-light" type="submit" (click)="onAdopt(dog, i)">Adopt this puppy</button>
                     <button class="btn waves-effect waves-light" type="submit" (click)="onDelete(dog)">Delete</button>
+                    <a [routerLink]="['/dogs', dog._id]" style="color:black">Update</a>
                 </div>
             </div>
         </div>

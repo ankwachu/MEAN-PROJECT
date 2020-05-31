@@ -9,6 +9,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { CreateDogComponent } from './components/create-dog/create-dog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserListComponent } from './components/user-list/user-list.component';
+import { DogDetailComponent } from './components/dog-detail/dog-detail.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { UserListComponent } from './components/user-list/user-list.component';
     DogListComponent,
     HeaderComponent,
     CreateDogComponent,
-    UserListComponent
+    UserListComponent,
+    DogDetailComponent
   ],
   imports: [
     BrowserModule,
