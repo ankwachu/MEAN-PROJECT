@@ -3,7 +3,8 @@ import { ApiService } from 'src/app/service/api.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as M from 'materialize-css';
-declare var $: any 
+declare var $: any;
+
 @Component({
   selector: 'app-create-dog',
   templateUrl: './create-dog.component.html',
@@ -13,6 +14,7 @@ export class CreateDogComponent implements OnInit {
 
   myForm: FormGroup
   // pictures = [];
+  reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
 
   constructor(private fb: FormBuilder, private dataService: ApiService, private router: Router ) {}
 
@@ -20,7 +22,7 @@ export class CreateDogComponent implements OnInit {
     this.myForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
       age: ['', Validators.required],
-      imageUrl: ['']
+      imageUrl: ['', [Validators.required, Validators.pattern(this.reg)]]
     });
 
     // this.pictures = this.getPictures();
@@ -66,5 +68,9 @@ export class CreateDogComponent implements OnInit {
   }
   get imageUrl() {
     return this.myForm.get('imageUrl');
+  }
+
+  goBack(): void {
+    this.router.navigateByUrl('home')
   }
 }

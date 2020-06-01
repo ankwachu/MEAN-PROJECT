@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&display=swap&subset=latin-ext');
 @import url('https://fonts.googleapis.com/css?family=Sriracha&display=swap&subset=latin-ext,thai,vietnamese');
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
+
+// $heading-font: 'Sriracha', cursive;
+$heading-font: 'Carter One', cursive;
 
 $font: 'Lato', sans-serif;
-$heading-font: 'Sriracha', cursive;
 $bg-color: bisque;
-$active: #b71c1c;
+$active: #ee6e73;
+
 // $font-weight: 500;
 
 // .panel {

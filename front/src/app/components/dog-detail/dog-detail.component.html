@@ -1,8 +1,6 @@
-
 <div class="col m6">
   <div class="card-panel title deep-orange accent-1">
-
-    <h5>{{dog.name | titlecase}}</h5>
+    <h5>Update your puppy: {{dog.name | titlecase}}</h5>
   </div>
   <div>
     <form #detailDogForm="ngForm" class="card-panel">
@@ -10,10 +8,9 @@
         <label for="firstname">First Name</label>
         <input type="text" class="form-control" id="firstname" required [(ngModel)]="dog.name" name="firstname"
           #firstname="ngModel">
-        <div [hidden]="firstname.valid || firstname.pristine"
-               class="alert alert-danger">
-              First Name is required
-          </div>
+        <div [hidden]="firstname.valid || firstname.pristine" class="alert alert-danger">
+          First Name is required
+        </div>
       </div>
 
       <div class="form-group">
@@ -28,17 +25,25 @@
         <label for="imageUrl">Picture</label>
         <input type="text" class="form-control" id="imageUrl" required [(ngModel)]="dog.imageUrl" name="imageUrl"
           #imageUrl="ngModel">
-        <div [hidden]="imageUrl.valid || imageUrl.pristine"
-               class="alert alert-danger">
-              Picture is required
-          </div>
+        <div [hidden]="imageUrl.valid || imageUrl.pristine" class="alert alert-danger">
+          Picture is required
+        </div>
       </div>
 
       <div class="btn-group btn-group-sm">
-        <button type="button" class="btn btn-dark" (click)="goBack()">Back</button>
+        <button type="button" class="btn btn-dark" (click)="goBack()">Home</button>
         <button type="button" class="btn btn-dark" (click)="update()" [disabled]="!detailDogForm.valid">Update</button>
         <button type="button" class="btn btn-dark" (click)="onDelete(dog)">Delete</button>
       </div>
     </form>
   </div>
+</div>
+
+<div class="col m6">
+  <div class="card-panel" *ngIf="!dog.imageUrl; else emptyTemplate">
+    <p>no image found</p>
+  </div>
+  <ng-template #emptyTemplate>
+    <img src="{{dog.imageUrl}}" alt="{{dog.name}}" class="card-panel">
+  </ng-template>
 </div>

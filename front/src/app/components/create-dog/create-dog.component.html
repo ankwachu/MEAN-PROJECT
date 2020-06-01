@@ -1,48 +1,44 @@
 <div class="row create">
 
-    <div class="col  m-5 offset-m1">
+    <div class="col m6">
         <div class="card-panel title deep-orange accent-1">
             <h4>Create a puppy !</h4>
         </div>
         <form [formGroup]="myForm" class="card-panel">
-            <div class="input-field">
-                <input type="text" class="form-control" name="title" formControlName="name">
-                <label>Name</label>
-            </div>
-            <span *ngIf="name.invalid && name.touched && name.errors?.required" class="invalid-feedback">
-                <sup>*</sup>Name is required
-            </span>
-            <span *ngIf="name.errors?.minlength" class="invalid-feedback">
-                <sup>*</sup>Name must be at least 3 characters long.
-           </span>
-            <span *ngIf="name.errors?.maxlength" class="invalid-feedback">
-                <sup>*</sup>Name can be max 10 characters long.
-           </span>
-           
-            <div class="input-field">
-                <input type="number" class="form-control" name="age" formControlName="age">
-                <label>Age</label>
-            </div>
-            <span *ngIf="age.invalid && age.touched" class="invalid-feedback">
-                <sup>*</sup>Age is required
-            </span>
-
 
             <div class="input-field">
-                <input type="text" class="form-control" name="imageUrl" formControlName="imageUrl">
-                <label>Picture</label>
+                <label class="active" for="name">Name</label>
+                <input placeholder="Bob" id="name" type="text" class="form-control" name="title"
+                    formControlName="name">
+                <span *ngIf="name.invalid && name.touched && name.errors?.required" class="invalid-feedback">
+                    <sup>*</sup>Name is required
+                </span>
+                <span *ngIf="name.errors?.minlength" class="invalid-feedback">
+                    <sup>*</sup>Name must be at least 3 characters long.
+                </span>
+                <span *ngIf="name.errors?.maxlength" class="invalid-feedback">
+                    <sup>*</sup>Name can be max 10 characters long.
+                </span>
             </div>
-            <!-- <span *ngIf="imageUrl.invalid && imageUrl.touched" class="invalid-feedback">
-                <sup>*</sup>Age is required
-            </span> -->
 
+            <div class="input-field">
+                <label class="active">Age</label>
+                <input type="number" class="form-control" name="age" formControlName="age" placeholder="5">
+                <span *ngIf="age.invalid && age.touched" class="invalid-feedback">
+                    <sup>*</sup>Age is required
+                </span>
+            </div>
 
-
-
-
-
-
-
+            <div class="input-field">
+                <label class="active">Picture</label>
+                <input type="text" class="form-control" name="imageUrl" formControlName="imageUrl"
+                    placeholder="https://via.placeholder.com/150.jpg">
+                <span *ngIf="imageUrl.invalid && imageUrl.touched && imageUrl.errors?.required" class="invalid-feedback">
+                    <sup>*</sup>URL is required
+                </span>
+                <span *ngIf="imageUrl.errors?.pattern" class="invalid-feedback">
+                    <sup>*</sup>Please enter valid URL</span>
+            </div>
 
             <!-- <div class="input-field">
                 <select formControlName="pictures">
@@ -53,13 +49,15 @@
             </div> -->
             <button type="submit" class="btn btn-success" [disabled]="!myForm.valid"
                 (click)="onAddPuppy()">Create</button>
+                <button type="button" class="btn btn-dark" (click)="goBack()">Home</button>
+
         </form>
     </div>
     <!-- <div class="col m5 offset-m1" style="border:  solid #f18101 1px;">
         <div class="card-panel title deep-orange accent-1">
             <span>Instruction !</span>
         </div>
-        <div class=" box">
+        <div class="box">
                 <img src="https://mochishiba.skj.jp/wp-content/themes/mochishiba_2019/images/common/thum_anime.png" alt="">
         </div>
 

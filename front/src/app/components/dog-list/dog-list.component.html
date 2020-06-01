@@ -7,8 +7,8 @@
         <div *ngIf="dogs?.length; else emptyTemplate" class="puppy-card">
             <div *ngFor="let dog of dogs; let i = index" class="col s12 m4">
                 <div class="card">
-                    <div class="card-image ">
-                        <img src="{{ dog.imageUrl }}">
+                    <div>
+                        <img src="{{ dog.imageUrl }}" alt="{{dog.name}}" class="card-image">
                     </div>
                     <div class="card-content">
                         <span class="card-title">{{ dog.name | titlecase }}</span>

@@ -1,0 +1,4 @@
+@import "variables";
+.active {
+    background-color: darken( $active, 10% );
+  }

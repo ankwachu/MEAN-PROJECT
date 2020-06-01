@@ -1,0 +1,19 @@
+/* invalid color */
+.invalid-feedback {
+    color: rgb(216, 19, 19);
+}
+
+/* invalid color */
+.input-field input[type="text"].invalid {
+    border-bottom: 1px solidrgb(216, 19, 19);
+    box-shadow: 0 1px 0 0 #000;
+}
+
+::placeholder { /* Firefox, Chrome, Opera */ 
+    color: rgb(90, 90, 90); 
+} 
+
+/* label color */
+.input-field label {
+    color: #000;
+  }
