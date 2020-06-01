@@ -14,7 +14,6 @@ export class DogDetailComponent implements OnInit {
   id: any;
   dog = new Dog();
   submitted = false;
-  message: string;
 
   constructor(private api: ApiService, private route: ActivatedRoute, private location: Location, private router: Router) { }
 
@@ -36,8 +35,9 @@ export class DogDetailComponent implements OnInit {
       this.api.deleteDog(dog._id)
         .subscribe(res => {
           this.dog = res;
-          // M.toast({ html: 'Puppy deleted !', classes: 'red accent-2' })
+          M.toast({ html: 'Puppy deleted !', classes: 'red accent-2' })
         });
+        this.router.navigateByUrl('home')
     }
   }
 
