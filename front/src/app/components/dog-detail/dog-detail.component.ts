@@ -16,7 +16,7 @@ export class DogDetailComponent implements OnInit {
   submitted = false;
   message: string;
 
-  constructor(private api: ApiService, private route: ActivatedRoute, private location: Location, private router: Router, ) { }
+  constructor(private api: ApiService, private route: ActivatedRoute, private location: Location, private router: Router) { }
 
   ngOnInit() {
     this.getDog();

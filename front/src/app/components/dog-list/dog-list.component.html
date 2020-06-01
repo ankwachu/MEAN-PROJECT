@@ -1,4 +1,4 @@
-<div class="col s7" style="border: solid #f18101 1px;">
+<div class="col s8" style="border: solid #f18101 1px;">
     <div class="row box-puppy-list">
         <div class="card-panel deep-orange accent-1">
             <h4 class="center-align">PUPPIES LIST</h4>
@@ -14,9 +14,10 @@
                         <span class="card-title">{{ dog.name | titlecase }}</span>
                         <p>Age: {{ dog.age }}</p>
                     </div>
-                    <button class="btn waves-effect waves-light" type="submit" (click)="onAdopt(dog, i)">Adopt this puppy</button>
-                    <button class="btn waves-effect waves-light" type="submit" (click)="onDelete(dog)">Delete</button>
-                    <a [routerLink]="['/dogs', dog._id]" style="color:black">Update</a>
+                    <div class="btn-group">
+                        <button class="btn waves-effect waves-light" type="submit" (click)="onAdopt(dog, i)">Adopt</button>
+                        <button [routerLink]="['/dogs', dog._id]" class="btn waves-effect waves-light">Update</button>
+                    </div>
                 </div>
             </div>
         </div>
