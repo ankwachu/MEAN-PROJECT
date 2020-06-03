@@ -1,39 +1,55 @@
 <div class="col m6">
   <div class="card-panel title deep-orange accent-1">
-    <h5>Update your puppy: {{dog.name | titlecase}}</h5>
+    <h5>Update your puppy</h5>
   </div>
   <div>
-    <form #detailDogForm="ngForm" class="card-panel">
-      <div class="form-group">
-        <label for="firstname">First Name</label>
-        <input type="text" class="form-control" id="firstname" required [(ngModel)]="dog.name" name="firstname"
-          #firstname="ngModel">
-        <div [hidden]="firstname.valid || firstname.pristine" class="alert alert-danger">
-          First Name is required
+    <form [formGroup]="editForm" class="card-panel">
+      <div class="input-field">
+        <label class="active">Name</label>
+        <input type="text" class="form-control" name="name" formControlName="name" required>
+        <span *ngIf="myForm.name.invalid && myForm.name.touched && myForm.name.errors?.required"
+          class="invalid-feedback">
+          <sup>*</sup>Name is required
+        </span>
+        <span *ngIf="myForm.name.errors?.minlength" class="invalid-feedback">
+          <sup>*</sup>Name must be at least 3 characters long.
+        </span>
+        <span *ngIf="myForm.name.errors?.maxlength" class="invalid-feedback">
+          <sup>*</sup>Name can be max 10 characters long.
+        </span>
+      </div>
+
+      <div class="input-field">
+        <label class="active">Age</label>
+        <input type="text" class="form-control" name="age" formControlName="age" required>
+        <span *ngIf="myForm.age.invalid && myForm.age.touched && myForm.age.errors?.required" class="invalid-feedback">
+          <sup>*</sup>Age is required
+        </span>
+        <div *ngIf="myForm.age.errors?.max" class="invalid-feedback">
+          <sup>*</sup>Maximum required age is 20.
+        </div>
+        <div *ngIf="myForm.age.errors?.min" class="invalid-feedback">
+          <sup>*</sup>Minimum required age is 1.
+        </div>
+        <div *ngIf="myForm.age.errors?.pattern" class="invalid-feedback">
+          <sup>*</sup>Number only
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="age">Age</label>
-        <input type="number" class="form-control" id="age" required [(ngModel)]="dog.age" name="age" #age="ngModel">
-        <div [hidden]="age.valid || age.pristine" class="alert alert-danger">
-          Age is required
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="imageUrl">Picture</label>
-        <input type="text" class="form-control" id="imageUrl" required [(ngModel)]="dog.imageUrl" name="imageUrl"
-          #imageUrl="ngModel">
-        <div [hidden]="imageUrl.valid || imageUrl.pristine" class="alert alert-danger">
-          Picture is required
-        </div>
+      <div class="input-field">
+        <label class="active">Picture</label>
+        <input type="text" class="form-control" name="imageUrl" formControlName="imageUrl" required>
+        <span *ngIf="myForm.imageUrl.invalid && myForm.imageUrl.touched && myForm.imageUrl.errors?.required" class="invalid-feedback">
+          <sup>*</sup>URL is required
+        </span>
+        <span *ngIf="myForm.imageUrl.errors?.pattern" class="invalid-feedback">
+          <sup>*</sup>Please enter valid URL</span>
       </div>
 
       <div class="btn-group btn-group-sm">
         <button type="button" class="btn btn-dark" (click)="goBack()">Home</button>
-        <button type="button" class="btn btn-dark" (click)="update()" [disabled]="!detailDogForm.valid">Update</button>
-        <button type="button" class="btn btn-dark" (click)="onDelete(dog)">Delete</button>
+        <button type="button" class="btn btn-dark" (click)="onSubmit()" [disabled]="!editForm.valid">Update</button>
+        <button type="button" class="btn btn-dark" (click)="onDelete()">Delete</button>
       </div>
     </form>
   </div>

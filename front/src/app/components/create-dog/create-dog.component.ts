@@ -38,7 +38,7 @@ export class CreateDogComponent implements OnInit {
   onAddPuppy() {
     this.dataService.addDog(this.myForm.value)
     .subscribe(res => {
-      console.log('Puppy created!')
+      console.log(res)
       this.router.navigateByUrl('home')
       M.toast({html: 'Puppy created !', classes: 'green lighten-1'})
       this.myForm.reset();

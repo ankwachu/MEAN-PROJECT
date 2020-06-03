@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Dog } from 'src/app/models/dog.model';
 import { Location } from '@angular/common';
 import * as M from 'materialize-css';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dog-detail',
@@ -11,33 +12,74 @@ import * as M from 'materialize-css';
   styleUrls: ['./dog-detail.component.scss']
 })
 export class DogDetailComponent implements OnInit {
-  id: any;
-  dog = new Dog();
   submitted = false;
+  editForm: FormGroup;
+  dog: Dog;
+  reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
 
-  constructor(private api: ApiService, private route: ActivatedRoute, private location: Location, private router: Router) { }
+  constructor(public fb: FormBuilder, private api: ApiService, private route: ActivatedRoute, private location: Location, private router: Router) { }
 
   ngOnInit() {
-    this.getDog();
+    this.updateDog();
+    let id = this.route.snapshot.params['id'];
+    this.getDog(id);
+    this.editForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
+      age: ['', [Validators.required, Validators.min(1), Validators.max(14), Validators.pattern("^[0-9]*$")]],
+      imageUrl: ['', [Validators.required, Validators.pattern(this.reg)]]
+    })
   }
 
-  getDog() {
-    this.id = this.route.snapshot.params['id'];
-    this.api.getOne(this.id)
-      .subscribe(dog => {
-        this.dog = dog;
-        console.log(this.dog);
+  getDog(id) {
+    this.api.getOne(id)
+      .subscribe(data => {
+        this.editForm.setValue({
+          name: data['name'],
+          age: data['age'],
+          imageUrl: data['imageUrl'],
+        });
+        console.log(data);
       })
   }
 
-  onDelete(dog: Dog) {
-    if (confirm('Are you sure to delete this puppy ?')) {
-      this.api.deleteDog(dog._id)
+  get myForm() {
+    return this.editForm.controls;
+  }
+
+  updateDog() {
+    this.editForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
+      age: ['', [Validators.required, Validators.min(1), Validators.max(14), Validators.pattern("^[0-9]*$")]],
+      imageUrl: ['', [Validators.required, Validators.pattern(this.reg)]]
+    })
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    if (!this.editForm.valid) {
+      return false;
+    } else {
+      let id = this.route.snapshot.paramMap.get('id');
+      this.api.update(id, this.editForm.value)
         .subscribe(res => {
-          this.dog = res;
-          M.toast({ html: 'Puppy deleted !', classes: 'red accent-2' })
+          console.log(res)
+          M.toast({ html: 'Puppy updated !', classes: 'green lighten-1' })
+          this.router.navigateByUrl('/home');
+        }, (error) => {
+          console.log(error)
         });
-        this.router.navigateByUrl('home')
+    }
+  }
+
+  onDelete() {
+    if (confirm('Are you sure to delete this puppy ?')) {
+      let id = this.route.snapshot.paramMap.get('id');
+      this.api.deleteDog(id)
+        .subscribe(res => {
+          console.log(res);
+          M.toast({ html: 'Puppy deleted !', classes: 'red accent-2' })
+          this.router.navigateByUrl('home')
+        });
     }
   }
 
@@ -45,13 +87,4 @@ export class DogDetailComponent implements OnInit {
     this.location.back();
   }
 
-  update() {
-    this.submitted = true;
-    this.api.update(this.dog)
-      .subscribe(res => {
-        this.dog = res;
-        M.toast({html: 'Puppy updated !', classes: 'green lighten-1'})
-      });
-    this.router.navigateByUrl('home')
-  }
 }

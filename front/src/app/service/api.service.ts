@@ -11,30 +11,34 @@ const httpOptions = {
 })
 export class ApiService {
 
-  private url = 'http://localhost:3000/api/dogs/';
+  private url = 'http://localhost:3000/api/dogs';
   items = [];
 
   constructor(private http: HttpClient) { }
 
   getDogs(): Observable<Dog[]> {
-    return this.http.get<Dog[]>(this.url)
+    let url = `${this.url}`;
+    return this.http.get<Dog[]>(url)
   }
 
   addDog(dog: Dog): Observable<Dog> {
-    return this.http.post<Dog>(this.url, dog, httpOptions)
+    let url = `${this.url}`;
+    return this.http.post<Dog>(url, dog, httpOptions)
   }
 
   deleteDog(id: string) {
-    return this.http.delete<Dog>(this.url + id);
+    let url = `${this.url}/${id}`;
+    return this.http.delete<Dog>(url);
   }
 
   getOne(id: string): Observable<Dog> {
-    return this.http.get<Dog>(this.url + id);
+    let url = `${this.url}/${id}`;
+    return this.http.get<Dog>(url);
   }
 
-  update (dog: Dog): Observable<any> {
-    const id = dog._id
-    return this.http.put<Dog>(this.url+id, dog, httpOptions);
+  update (id, data): Observable<any> {
+    let url = `${this.url}/${id}`;
+    return this.http.put<Dog>(url, data, httpOptions);
   }
 
   adopt(dog: Dog) {
