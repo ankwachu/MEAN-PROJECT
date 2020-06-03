@@ -13,7 +13,6 @@ declare var $: any;
 export class CreateDogComponent implements OnInit {
 
   myForm: FormGroup
-  // pictures = [];
   reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
 
   constructor(private fb: FormBuilder, private dataService: ApiService, private router: Router ) {}
@@ -21,12 +20,9 @@ export class CreateDogComponent implements OnInit {
   ngOnInit() {
     this.myForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
-      age: ['', Validators.required],
+      age: ['', [Validators.required, Validators.min(1), Validators.max(14), Validators.pattern("^[0-9]*$")]],
       imageUrl: ['', [Validators.required, Validators.pattern(this.reg)]]
     });
-
-    // this.pictures = this.getPictures();
-    // this.myForm.controls.pictures.patchValue(this.pictures[0].id);
 
     this.myForm.valueChanges
       .subscribe(value => {
@@ -39,17 +35,6 @@ export class CreateDogComponent implements OnInit {
 
   }
 
-  // getPictures() {
-  //   return [
-  //     { name: 'imageUrl one', imageUrl: 'https://mochishiba.skj.jp/wp-content/uploads/2019/08/thum_ume.png'},
-  //     { name: 'imageUrl two', imageUrl: '/assets/pictures/thum_anko.png' },
-  //     { name: 'imageUrl three', imageUrl: '/assets/pictures/thum_monaka.png' },
-  //     { name: 'imageUrl four', imageUrl: '/assets/pictures/thum_okaka.png' },
-  //     { name: 'imageUrl five', imageUrl: '/assets/pictures/thum_sakura.png' },
-  //     { name: 'imageUrl six', imageUrl: '/assets/pictures/thum_ume.png' }
-  //   ];
-  // }
-
   onAddPuppy() {
     this.dataService.addDog(this.myForm.value)
     .subscribe(res => {
@@ -60,14 +45,8 @@ export class CreateDogComponent implements OnInit {
     })
   }
 
-  get name() {
-    return this.myForm.get('name');
-  }
-  get age() {
-    return this.myForm.get('age');
-  }
-  get imageUrl() {
-    return this.myForm.get('imageUrl');
+  get f(){
+    return this.myForm.controls;
   }
 
   goBack(): void {
