@@ -1,11 +1,11 @@
-<div class="col s8" style="border: solid #f18101 1px;">
+<div class="col s12" style="border: solid #f18101 1px;">
     <div class="row box-puppy-list">
         <div class="card-panel deep-orange accent-1">
             <h4 class="center-align">PUPPIES LIST</h4>
         </div>
-    
+
         <div *ngIf="dogs?.length; else emptyTemplate" class="puppy-card">
-            <div *ngFor="let dog of dogs; let i = index" class="col s12 m4">
+            <div *ngFor="let dog of dogs; let i = index" class="col s12 m3">
                 <div class="card">
                     <div>
                         <img src="{{ dog.imageUrl }}" alt="{{dog.name}}" class="card-image">
@@ -15,19 +15,17 @@
                         <p>Age: {{ dog.age }}</p>
                     </div>
                     <div class="btn-group">
-                        <button class="btn waves-effect waves-light" type="submit" (click)="onAdopt(dog, i)">Adopt</button>
                         <button [routerLink]="['/dogs', dog._id]" class="btn waves-effect waves-light">Update</button>
                     </div>
                 </div>
             </div>
         </div>
-    
+
         <ng-template #emptyTemplate>
             <div class="materialert error">
                 <div class="material-icons">error_outline</div>
-                No Puppy Found! Create a puppy first !
+                Create a puppy first !
             </div>
         </ng-template>
     </div>
-    </div>
-   <app-user-list></app-user-list>
+</div>

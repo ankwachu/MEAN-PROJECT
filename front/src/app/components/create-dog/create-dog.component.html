@@ -12,10 +12,13 @@
                     <sup>*</sup>Name is required
                 </span>
                 <span *ngIf="f.name.errors?.minlength" class="invalid-feedback">
-                    <sup>*</sup>Name must be at least 3 characters long.
+                    <sup>*</sup>Name must be at least 3 characters long
                 </span>
                 <span *ngIf="f.name.errors?.maxlength" class="invalid-feedback">
-                    <sup>*</sup>Name can be max 10 characters long.
+                    <sup>*</sup>Name can be max 10 characters long
+                </span>
+                <span *ngIf="f.name.errors?.pattern" class="invalid-feedback">
+                    <sup>*</sup>Text only
                 </span>
             </div>
 
@@ -26,10 +29,10 @@
                     <sup>*</sup>Age is required
                 </span>
                 <div *ngIf="f.age.errors?.max" class="invalid-feedback">
-                    <sup>*</sup>Maximum required age is 20.
+                    <sup>*</sup>Maximum required age is 14
                 </div>
                 <div *ngIf="f.age.errors?.min" class="invalid-feedback">
-                    <sup>*</sup>Minimum required age is 1.
+                    <sup>*</sup>Minimum required age is 1
                 </div>
                 <div *ngIf="f.age.errors?.pattern" class="invalid-feedback">
                     <sup>*</sup>Number only
@@ -48,10 +51,11 @@
                     <sup>*</sup>Please enter valid URL</span>
             </div>
 
-            <button type="submit" class="btn btn-success" [disabled]="!myForm.valid"
-                (click)="onAddPuppy()">Create</button>
-            <button type="button" class="btn btn-dark" (click)="goBack()">Home</button>
-
+            <div class="btn-group btn-group-sm">
+                <button type="submit" class="btn btn-success" [disabled]="!myForm.valid"
+                    (click)="onAddPuppy()">Create</button>
+                <button type="button" class="btn btn-dark" (click)="goBack()">Home</button>
+            </div>
         </form>
     </div>
     <!-- <div class="col m5 offset-m1" style="border:  solid #f18101 1px;">

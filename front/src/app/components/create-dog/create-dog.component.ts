@@ -19,7 +19,7 @@ export class CreateDogComponent implements OnInit {
 
   ngOnInit() {
     this.myForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10), Validators.pattern("^[a-zA-Z]*$")]],
       age: ['', [Validators.required, Validators.min(1), Validators.max(14), Validators.pattern("^[0-9]*$")]],
       imageUrl: ['', [Validators.required, Validators.pattern(this.reg)]]
     });

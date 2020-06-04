@@ -34,10 +34,4 @@ dogs: Dog[];
     }
   }
 
-  onAdopt(dog: Dog, i) {
-    this.api.adopt(dog);
-    this.dogs.splice(i, 1);
-    console.log(dog);
-    M.toast({ html: 'Great you adopted a puppy !', classes: 'green lighten-1' })
-  }
 }

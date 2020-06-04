@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "variables";
 body {
+  // background-image: url('/assets/images/paw.jpg');
   background-color: $bg-color;
   font-family: $font;
 }
@@ -15,6 +16,7 @@ body {
   font-family: $heading-font;
   letter-spacing: 1px;
 }
+
 .card {
   margin: 10px;
 }
@@ -30,13 +32,13 @@ img {
   object-fit: cover;
 }
 
-.card-image  {
+.card-image {
   height: 30vh;
 }
 
-.card-panel {
-  padding: 10px;
-}
+// .card-panel {
+//   padding: 10px;
+// }
 
 .btn {
   text-align: center;
@@ -47,10 +49,29 @@ img {
   font-size: 12px;
 }
 
+.btn-group {
+  display: flex;
+}
+
+.btn {
+  box-shadow: none;
+}
+
+/* invalid color */
+.invalid-feedback {
+  color: #d81313;
+}
+
+/* label color */
+.input-field label {
+  color: #000;
+  font-size: large;
+}
+
 .materialert {
   position: relative;
-  min-width: 150px;
-  max-width: 210px;
+  // min-width: 150px;
+  // max-width: 210px;
   padding: 15px;
   margin-bottom: 20px;
   margin-top: 15px;
@@ -63,6 +84,7 @@ img {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  justify-content: center;
   -webkit-box-align: center;
   -webkit-align-items: center;
   -ms-flex-align: center;
@@ -73,22 +95,7 @@ img {
 .materialert .material-icons {
   margin-right: 10px;
 }
-.materialert .close-alert {
-  -webkit-appearance: none;
-  border: 0;
-  cursor: pointer;
-  color: inherit;
-  background: 0 0;
-  font-size: 22px;
-  line-height: 1;
-  font-weight: bold;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
-  filter: alpha(opacity=40);
-  margin-bottom: -5px;
-  position: absolute;
-  top: 16px;
-  right: 5px;
-}
+
 .materialert.info {
   background-color: #039be5;
   color: #fff;

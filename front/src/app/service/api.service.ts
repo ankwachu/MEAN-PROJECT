@@ -12,7 +12,6 @@ const httpOptions = {
 export class ApiService {
 
   private url = 'http://localhost:3000/api/dogs';
-  items = [];
 
   constructor(private http: HttpClient) { }
 
@@ -41,14 +40,5 @@ export class ApiService {
     return this.http.put<Dog>(url, data, httpOptions);
   }
 
-  adopt(dog: Dog) {
-    this.items.push(dog);
-    this.items.reverse();
-    console.log("list of adopted puppies: ", this.items);
-  }
-
-  getAdopted() {
-    return this.items;
-  }
 }
 

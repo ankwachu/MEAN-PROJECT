@@ -8,7 +8,6 @@ import { DogListComponent } from './components/dog-list/dog-list.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CreateDogComponent } from './components/create-dog/create-dog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserListComponent } from './components/user-list/user-list.component';
 import { DogDetailComponent } from './components/dog-detail/dog-detail.component';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { DogDetailComponent } from './components/dog-detail/dog-detail.component
     DogListComponent,
     HeaderComponent,
     CreateDogComponent,
-    UserListComponent,
     DogDetailComponent
   ],
   imports: [

@@ -1,6 +1,6 @@
 <div class="col m6">
   <div class="card-panel title deep-orange accent-1">
-    <h5>Update your puppy</h5>
+    <h5>Update: {{name}}</h5>
   </div>
   <div>
     <form [formGroup]="editForm" class="card-panel">
@@ -17,6 +17,9 @@
         <span *ngIf="myForm.name.errors?.maxlength" class="invalid-feedback">
           <sup>*</sup>Name can be max 10 characters long.
         </span>
+        <span *ngIf="myForm.name.errors?.pattern" class="invalid-feedback">
+          <sup>*</sup>Text only
+      </span>
       </div>
 
       <div class="input-field">
@@ -26,7 +29,7 @@
           <sup>*</sup>Age is required
         </span>
         <div *ngIf="myForm.age.errors?.max" class="invalid-feedback">
-          <sup>*</sup>Maximum required age is 20.
+          <sup>*</sup>Maximum required age is 14.
         </div>
         <div *ngIf="myForm.age.errors?.min" class="invalid-feedback">
           <sup>*</sup>Minimum required age is 1.

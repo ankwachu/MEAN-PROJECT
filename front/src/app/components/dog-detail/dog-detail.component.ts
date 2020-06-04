@@ -53,7 +53,7 @@ export class DogDetailComponent implements OnInit {
 
   updateDog() {
     this.editForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10), Validators.pattern("^[a-zA-Z]*$")]],
       age: ['', [Validators.required, Validators.min(1), Validators.max(14), Validators.pattern("^[0-9]*$")]],
       imageUrl: ['', [Validators.required, Validators.pattern(this.reg)]]
     })
@@ -95,6 +95,9 @@ export class DogDetailComponent implements OnInit {
   onChanges(): void {
     this.editForm.get('imageUrl').valueChanges.subscribe(result => {
       this.imageUrl = result;
+    });
+    this.editForm.get('name').valueChanges.subscribe(result => {
+      this.name = result;
     });
   }
 }
