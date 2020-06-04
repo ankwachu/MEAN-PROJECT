@@ -16,6 +16,8 @@ export class DogDetailComponent implements OnInit {
   editForm: FormGroup;
   dog: Dog;
   reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+  imageUrl: any;
+  name: any;
 
   constructor(public fb: FormBuilder, private api: ApiService, private route: ActivatedRoute, private location: Location, private router: Router) { }
 
@@ -27,7 +29,8 @@ export class DogDetailComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
       age: ['', [Validators.required, Validators.min(1), Validators.max(14), Validators.pattern("^[0-9]*$")]],
       imageUrl: ['', [Validators.required, Validators.pattern(this.reg)]]
-    })
+    });
+    this.onChanges();
   }
 
   getDog(id) {
@@ -38,6 +41,8 @@ export class DogDetailComponent implements OnInit {
           age: data['age'],
           imageUrl: data['imageUrl'],
         });
+        this.name = data.name;
+        this.imageUrl = data.imageUrl;
         console.log(data);
       })
   }
@@ -87,4 +92,9 @@ export class DogDetailComponent implements OnInit {
     this.location.back();
   }
 
+  onChanges(): void {
+    this.editForm.get('imageUrl').valueChanges.subscribe(result => {
+      this.imageUrl = result;
+    });
+  }
 }

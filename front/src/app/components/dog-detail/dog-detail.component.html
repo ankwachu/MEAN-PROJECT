@@ -56,10 +56,10 @@
 </div>
 
 <div class="col m6">
-  <div class="card-panel" *ngIf="!dog.imageUrl; else emptyTemplate">
+  <div class="card-panel" *ngIf="!imageUrl; else emptyTemplate">
     <p>no image found</p>
   </div>
   <ng-template #emptyTemplate>
-    <img src="{{dog.imageUrl}}" alt="{{dog.name}}" class="card-panel">
+    <img src="{{imageUrl}}" alt="{{name}}" class="card-panel">
   </ng-template>
 </div>
