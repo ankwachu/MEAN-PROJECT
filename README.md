@@ -1,26 +1,66 @@
 # MEAN-APP
 
-1 - CRUD create a puppy (DONE)   
-2 - adopt a puppy (TODO)
+Application pour adopter un petit chien. 
 
-« MEAN est une plateforme fullstack JavaScript pour les applications web modernes ».
-Ces composants sont :
-    MongoDB
-    Express
-    Angular
-    NodeJS
+Utilisation de MEAN (plateforme fullstack JavaScript)  
+Ces composants sont :  
+MongoDB  
+Express  
+Angular  
+NodeJS  
+Ces composants sont à installer si vous ne les avez pas.  
+
+## TODOS  
+1 - CRUD create a puppy (DONE)  
+2 - login   
+3 - adopt a puppy  
+5 - upload images
+
     
 [Démo vidéo](https://www.loom.com/share/3d4111c3ceb944adad6ed722db28a8cb)
     
-## Docker
+## DOCKER
 
 install [Docker](https://docs.docker.com/get-docker/)
 
-## Installation avec docker
+## Installation avec docker  
 ```
 git clone https://github.com/ankwachu/MEAN-APP.git   
-cd MEAN-APP   
+cd MEAN-APP
 docker-compose up
+```
+
+## Installation sans docker
+```
+git clone https://github.com/ankwachu/MEAN-APP.git   
+cd MEAN-APP    
+```
+### Dans le backend
+```
+cd backend
+```
+modifier l'url de connection dans le fichier mongodb.config.js
+```
+npm install
+```
+ouvrir 2 terminals
+dans le premier terminal
+```
+nodemon server
+```  
+dans le second terminal
+```
+mongo
+```
+message de connection:  
+Listening on port 3000  
+Connexion MongoDB !
+
+### Dans le front
+```
+cd front
+npm install
+ng serve
 ```
 
 Front  
