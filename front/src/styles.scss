@@ -1,5 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
 @import "variables";
+
 body {
   // background-image: url('/assets/images/paw.jpg');
   background-color: $bg-color;
@@ -26,6 +26,10 @@ body {
   text-align: center;
 }
 
+.show-image {
+  padding: 10px;
+}
+
 img {
   background-color: #f4ff81;
   width: 100%;
@@ -36,9 +40,6 @@ img {
   height: 30vh;
 }
 
-// .card-panel {
-//   padding: 10px;
-// }
 
 .btn {
   text-align: center;

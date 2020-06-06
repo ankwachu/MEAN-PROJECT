@@ -43,7 +43,7 @@ modifier l'url de connection dans le fichier mongodb.config.js
 ```
 npm install
 ```
-ouvrir 2 terminals
+ouvrir 2 terminals  
 dans le premier terminal
 ```
 nodemon server
