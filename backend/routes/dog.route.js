@@ -1,20 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const dogs = require('../controllers/dog.controller')
+const auth = require('../middlewares/auth')
 
 // Create a new Dog
-router.post('/', dogs.create);
+router.post('/', auth, dogs.create);
  
 // Retrieve all Dog
-router.get('/', dogs.findAll);
+router.get('/', auth, dogs.findAll);
 
 // Retrieve a single Dog by Id
-router.get('/:id', dogs.findOne);
+router.get('/:id', auth, dogs.findOne);
 
 // Update a Dog with Id
-router.put('/:id', dogs.update);
+router.put('/:id', auth, dogs.update);
 
 // Delete a Dog with Id
-router.delete('/:id', dogs.delete);
+router.delete('/:id', auth, dogs.delete);
 
 module.exports = router;

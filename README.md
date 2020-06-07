@@ -16,8 +16,8 @@ Ces composants sont à installer si vous ne les avez pas.
 3 - adopt a puppy  
 5 - upload images
 
-    
-[Démo vidéo](https://www.loom.com/share/3d4111c3ceb944adad6ed722db28a8cb)
+<!-- à modifier     -->
+[Démo vidéo]()
     
 ## DOCKER
 
