@@ -5,7 +5,7 @@ exports.create = (req, res, next) => {
     name: req.body.name,
     age: req.body.age,
     imageUrl: req.body.imageUrl,
-    //   userId: req.body.userId
+    userId: req.body.userId
   });
   dog.save().then(
     () => {
@@ -52,7 +52,7 @@ exports.update = (req, res, next) => {
     imageUrl: req.body.imageUrl,
     // userId: req.body.userId
   });
-  Dog.updateOne({_id: req.params.id}, dog).then(
+  Dog.updateOne({ _id: req.params.id }, dog).then(
     () => {
       res.status(201).json({
         message: 'Dog updated successfully!'
@@ -68,7 +68,7 @@ exports.update = (req, res, next) => {
 };
 
 exports.delete = (req, res, next) => {
-  Dog.deleteOne({_id: req.params.id}).then(
+  Dog.deleteOne({ _id: req.params.id }).then(
     () => {
       res.status(200).json({
         message: 'Dog Deleted!'

@@ -10,22 +10,23 @@ import { User } from 'src/app/models/user.model';
 })
 export class UserProfileComponent implements OnInit {
 
-  currentUser: User; 
+  currentUser = new User();
 
   constructor(
     public authService: AuthService,
-    private actRoute: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
-    this.getUsers();
+    this.getUser();
   }
 
-  getUsers(){
-    let id = this.actRoute.snapshot.paramMap.get('id');
+  getUser() {
+    let id = this.route.snapshot.paramMap.get('id');
     return this.authService.getUserProfile(id)
-    .subscribe(data => {
-      console.log(data);
-      this.currentUser = data});
+      .subscribe(data => {
+        console.log(data);
+        this.currentUser = data
+      });
   }
 }

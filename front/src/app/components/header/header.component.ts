@@ -11,7 +11,7 @@ declare var $: any;
 })
 export class HeaderComponent implements OnInit {
 
-  currentUser : User;
+  currentUser = new User();
 
   constructor(public authService: AuthService,
     private actRoute: ActivatedRoute) { }
@@ -27,9 +27,8 @@ export class HeaderComponent implements OnInit {
       $('.sidenav').sidenav();
     });
   }
-  getUser() {
-    let id = this.actRoute.snapshot.paramMap.get('id');
-    return this.authService.getUserProfile(id)
+  getUser(id) {
+    this.authService.getUserProfile(id)
       .subscribe(data => {
         console.log(data);
         this.currentUser = data

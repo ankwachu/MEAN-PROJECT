@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const dbConfig = require('./config/mongodb.config');
 const mongoose = require('mongoose');
 
+const dogRoutes = require('./routes/dog.route');
+const api = require('./routes/auth.route');
+
 // Connecting to the database
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.url,
@@ -32,10 +35,7 @@ app.use(cors(corsOptions))
 // Serve static resources
 app.use('/public', express.static('public'));
 
-// Express APIs
-const dogRoutes = require('./routes/dog.route');
 app.use('/api/dogs', dogRoutes);
-const api = require('./routes/auth.route');
 app.use('/api', api)
 
 module.exports = app;
