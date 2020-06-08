@@ -17,13 +17,12 @@ Ces composants sont à installer si vous ne les avez pas.
 5 - upload images
 
     
-[Démo vidéo](https://www.loom.com/share/3d4111c3ceb944adad6ed722db28a8cb)
-    
-## DOCKER
-
-install [Docker](https://docs.docker.com/get-docker/)
+[Démo vidéo](https://www.loom.com/share/3c6d0830a8304cfa8772d6a391a5c266)
 
 ## Installation avec docker  
+
+installer [Docker](https://docs.docker.com/get-docker/)  
+
 ```
 git clone https://github.com/ankwachu/MEAN-APP.git   
 cd MEAN-APP
