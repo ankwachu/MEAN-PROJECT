@@ -2,16 +2,16 @@
   <div class="nav-wrapper">
     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <ul class="left hide-on-med-and-down">
-      <!-- <li><a *ngIf="this.authService.isLoggedIn" [routerLink]="['/user-profile', currentUser._id]" routerLinkActive="active"> Profile</a></li> -->
-      <li><a *ngIf="this.authService.isLoggedIn" [routerLink]="['home']" routerLinkActive="active">Home</a></li>
-      <li><a *ngIf="this.authService.isLoggedIn" [routerLink]="['create']" routerLinkActive="active">Create a puppy</a>
+      <!-- <li><a *ngIf="this.authService.login" [routerLink]="['/user-profile', currentUser._id]" routerLinkActive="active"> Profile</a></li> -->
+      <li><a  [routerLink]="['home']" routerLinkActive="active">Home</a></li>
+      <li><a *ngIf="this.authService.login" [routerLink]="['create']" routerLinkActive="active">Create a puppy</a>
       </li>
-      <li><a *ngIf="!this.authService.isLoggedIn" class="p-2 text-dark" routerLinkActive="active"
+      <li><a *ngIf="!this.authService.login" class="p-2 text-dark" routerLinkActive="active"
           routerLink="/log-in">Sign
           in</a></li>
-          <li><a *ngIf="!this.authService.isLoggedIn" routerLinkActive="active"
+          <li><a *ngIf="!this.authService.login" routerLinkActive="active"
             routerLinkActive="active" routerLink="/sign-up">Sign up</a>
-          <a (click)="logout()" *ngIf="this.authService.isLoggedIn">Logout</a></li>
+            <a (click)="logout()" *ngIf="this.authService.login">Logout</a></li>
     </ul>
   </div>
 </nav>

@@ -2,77 +2,68 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { User } from '../models/user.model';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  endpoint: string = 'http://localhost:3000/api';
-  headers = new HttpHeaders().set('Content-Type', 'application/json');
-  currentUser = {};
+  isAuth$ = new BehaviorSubject<boolean>(false);
+  token: string;
+  userId: string;
 
-  constructor(
-    private http: HttpClient,
-    public router: Router
-  ) {
+  constructor(private router: Router,
+              private http: HttpClient) {}
+
+  createNewUser(email: string, password: string) {
+    return new Promise((resolve, reject) => {
+      this.http.post(
+        'http://localhost:3000/api/users/signup',
+        { email: email, password: password })
+        .subscribe(
+          () => {
+            this.login(email, password).then(
+              () => {
+                resolve();
+              }
+            ).catch(
+              (error) => {
+                reject(error);
+              }
+            );
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
   }
 
-  // Sign-up
-  signUp(user: User): Observable<any> {
-    let api = `${this.endpoint}/register-user`;
-    return this.http.post(api, user)
-      .pipe(
-        catchError(this.handleError)
-      )
+  login(email: string, password: string) {
+    return new Promise((resolve, reject) => {
+      this.http.post(
+        'http://localhost:3000/api/users/login',
+        { email: email, password: password })
+        .subscribe(
+          (authData: { token: string, userId: string }) => {
+            this.token = authData.token;
+            this.userId = authData.userId;
+            this.isAuth$.next(true);
+            resolve();
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
   }
 
-  // Sign-in
-  signIn(user: User) {
-    return this.http.post<any>(`${this.endpoint}/signin`, user)
-      .subscribe((res: any) => {
-        localStorage.setItem('access_token', res.token)
-        this.getUserProfile(res._id).subscribe((res) => {
-          this.currentUser = res;
-          this.router.navigate(['user-profile/' + res._id]);
-        })
-      })
+  logout() {
+    this.isAuth$.next(false);
+    this.userId = null;
+    this.token = null;
   }
 
-  getToken() {
-    return localStorage.getItem('access_token');
-  }
-
-  get isLoggedIn(): boolean {
-    let authToken = localStorage.getItem('access_token');
-    return (authToken !== null) ? true : false;
-  }
-
-  doLogout() {
-    let removeToken = localStorage.removeItem('access_token');
-    if (removeToken == null) {
-      this.router.navigate(['log-in']);
-    }
-  }
-
-  // User profile
-  getUserProfile(id): Observable<User> {
-    let api = `${this.endpoint}/user-profile/${id}`;
-    return this.http.get<User>(api, { headers: this.headers })
-  }
-
-  // Error 
-  handleError(error: HttpErrorResponse) {
-    let msg = '';
-    if (error.error instanceof ErrorEvent) {
-      // client-side error
-      msg = error.error.message;
-    } else {
-      // server-side error
-      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    return throwError(msg);
-  }
+  
 }

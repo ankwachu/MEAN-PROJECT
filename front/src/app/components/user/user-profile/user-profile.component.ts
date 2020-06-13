@@ -18,15 +18,15 @@ export class UserProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getUser();
+    // this.getUser();
   }
 
-  getUser() {
-    let id = this.route.snapshot.paramMap.get('id');
-    return this.authService.getUserProfile(id)
-      .subscribe(data => {
-        console.log(data);
-        this.currentUser = data
-      });
-  }
+  // getUser() {
+  //   let id = this.route.snapshot.paramMap.get('id');
+  //   return this.authService.getUserProfile(id)
+  //     .subscribe(data => {
+  //       console.log(data);
+  //       this.currentUser = data
+  //     });
+  // }
 }

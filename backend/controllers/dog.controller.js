@@ -5,7 +5,7 @@ exports.create = (req, res, next) => {
     name: req.body.name,
     age: req.body.age,
     imageUrl: req.body.imageUrl,
-    userId: req.body.userId
+    // userId: req.body.userId
   });
   dog.save().then(
     () => {

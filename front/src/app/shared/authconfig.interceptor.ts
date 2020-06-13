@@ -5,15 +5,14 @@ import { AuthService } from "./auth.service";
 @Injectable()
 
 export class AuthInterceptor implements HttpInterceptor {
-    constructor(private authService: AuthService) { }
+
+    constructor(private auth: AuthService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler) {
-        const authToken = this.authService.getToken();
-        req = req.clone({
-            setHeaders: {
-                Authorization: "Bearer " + authToken
-            }
+        const authToken = this.auth.token;
+        const newRequest = req.clone({
+            headers: req.headers.set('Authorization', 'Bearer ' + authToken)
         });
-        return next.handle(req);
+        return next.handle(newRequest);
     }
 }

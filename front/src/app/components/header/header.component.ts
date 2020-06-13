@@ -1,6 +1,6 @@
 import { AuthService } from './../../shared/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 declare var $: any;
 
@@ -11,13 +11,14 @@ declare var $: any;
 })
 export class HeaderComponent implements OnInit {
 
-  currentUser = new User();
+  currentUser : User;
 
   constructor(public authService: AuthService,
-    private actRoute: ActivatedRoute) { }
+    private actRoute: ActivatedRoute, private router: Router ) { }
 
   logout() {
-    this.authService.doLogout()
+    this.authService.logout();
+    this.router.navigateByUrl('log-in')
   }
 
   ngOnInit(): void {
@@ -27,11 +28,12 @@ export class HeaderComponent implements OnInit {
       $('.sidenav').sidenav();
     });
   }
-  getUser(id) {
-    this.authService.getUserProfile(id)
-      .subscribe(data => {
-        console.log(data);
-        this.currentUser = data
-      });
-  }
+  // getUser() {
+  //   let id = this.actRoute.snapshot.paramMap.get('id');
+  //   return this.authService.getUserProfile(id)
+  //     .subscribe(data => {
+  //       console.log(data);
+  //       this.currentUser = data
+  //     });
+  // }
 }

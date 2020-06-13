@@ -45,7 +45,7 @@ exports.login = (req, res, next) => {
 
 exports.findall = (req, res, next) => {
     User.find()
-        .then(dogs => res.status(200).json(dogs))
+        .then(users => res.status(200).json(users))
         .catch(error => res.status(400).json({ error }));
 };
 

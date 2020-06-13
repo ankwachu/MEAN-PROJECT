@@ -5,7 +5,7 @@ const dbConfig = require('./config/mongodb.config');
 const mongoose = require('mongoose');
 
 const dogRoutes = require('./routes/dog.route');
-const api = require('./routes/auth.route');
+const userRoutes = require('./routes/auth.route');
 
 // Connecting to the database
 mongoose.Promise = global.Promise;
@@ -35,7 +35,7 @@ app.use(cors(corsOptions))
 // Serve static resources
 app.use('/public', express.static('public'));
 
+app.use('/api/users', userRoutes)
 app.use('/api/dogs', dogRoutes);
-app.use('/api', api)
 
 module.exports = app;

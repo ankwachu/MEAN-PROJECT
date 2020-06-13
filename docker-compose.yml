@@ -26,4 +26,4 @@ services:
   mongo: # name of the third service
     image: mongo # specify image to build container from
     ports:
-      - "27018:27017" # specify port forewarding
+      - "0.0.0.0:27018:27017" # specify port forewarding
